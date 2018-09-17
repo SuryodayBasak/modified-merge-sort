@@ -1,11 +1,13 @@
 import numpy as np
+import time
+import random
 
 def check(A):
     for i in range(len(A) - 1):
         if (A[i] > A[i+1]):
             print("Array not sorted.")
             return -1
-    print("OK.")
+    return 0
 
 def insertion_sort(A, p, r):
     #print(A[p:r])
@@ -65,8 +67,12 @@ def merge_sort(A, p, r, k):
 
 k = 4
 A = [1000, 99, 6462, 11, 7, 44, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 99, 6462, 11, 7, 44, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
-A = np.random.uniform(-1,0,400000)
-print(A)
-merge_sort(A, 0, len(A)-1, k)
-print(A)
-check(A)
+A = np.random.uniform(-1,1,400000)
+
+for i in range(0, 100):
+    A1 = rand_smpl = [ A[i] for i in sorted(random.sample(range(len(A)), 100)) ]
+    start_time = time.time()
+    merge_sort(A1, 0, len(A1)-1, k)
+    t = time.time() - start_time
+    if check(A1) == -1:
+        print("Array not sorted.")
