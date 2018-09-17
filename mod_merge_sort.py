@@ -1,3 +1,12 @@
+import numpy as np
+
+def check(A):
+    for i in range(len(A) - 1):
+        if (A[i] > A[i+1]):
+            print("Array not sorted.")
+            return -1
+    print("OK.")
+
 def insertion_sort(A, p, r):
     #print(A[p:r])
     for j in range(p+1, r):
@@ -42,8 +51,11 @@ def merge(A, p, q, r):
 
 def merge_sort(A, p, r, k):
 
+    #print('p+k=', p+k)
+    #print('r = ', r)
+    #print()
     if (r-p <= k):
-        insertion_sort(A, p, p+k)
+        insertion_sort(A, p, r+1)
    
     elif p < r:
         q = int((p+r)/2)
@@ -52,7 +64,9 @@ def merge_sort(A, p, r, k):
         merge(A, p, q, r)
 
 k = 4
-A = [99, 6462, 11, 7, 44, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 99, 6462, 11, 7, 44, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+A = [1000, 99, 6462, 11, 7, 44, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 99, 6462, 11, 7, 44, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+A = np.random.uniform(-1,0,400000)
 print(A)
 merge_sort(A, 0, len(A)-1, k)
 print(A)
+check(A)
